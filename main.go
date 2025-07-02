@@ -28,7 +28,7 @@ func main() {
 	flag.Parse()
 
 	opts := providerserver.ServeOpts{
-		Address: "registry.terraform.io/providers/pixambi/podman",
+		Address: "registry.terraform.io/pixambi/podman",
 		Debug:   debug,
 	}
 

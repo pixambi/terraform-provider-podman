@@ -10,38 +10,47 @@ import (
 )
 
 var (
-	_ provider.Provider = &hashicupsProvider{}
+	_ provider.Provider = &podmanProvider{}
 )
 
+// New is a helper function to simplify provider server and testing implementation.
 func New(version string) func() provider.Provider {
 	return func() provider.Provider {
-		return &hashicupsProvider{
+		return &podmanProvider{
 			version: version,
 		}
 	}
 }
 
-type hashicupsProvider struct {
+// hashicupsProvider is the provider implementation.
+type podmanProvider struct {
+	// version is set to the provider version on release, "dev" when the
+	// provider is built and ran locally, and "test" when running acceptance
+	// testing.
 	version string
 }
 
-func (p *hashicupsProvider) Metadata(_ context.Context, _ provider.MetadataRequest, resp *provider.MetadataResponse) {
-	resp.TypeName = "hashicups"
+// Metadata returns the provider type name.
+func (p *podmanProvider) Metadata(_ context.Context, _ provider.MetadataRequest, resp *provider.MetadataResponse) {
+	resp.TypeName = "podman"
 	resp.Version = p.version
 }
 
-func (p *hashicupsProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
+// Schema defines the provider-level schema for configuration data.
+func (p *podmanProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{}
 }
 
-func (p *hashicupsProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
+// Configure prepares a HashiCups API client for data sources and resources.
+func (p *podmanProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
 }
 
 // DataSources defines the data sources implemented in the provider.
-func (p *hashicupsProvider) DataSources(_ context.Context) []func() datasource.DataSource {
+func (p *podmanProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 	return nil
 }
 
-func (p *hashicupsProvider) Resources(_ context.Context) []func() resource.Resource {
+// Resources defines the resources implemented in the provider.
+func (p *podmanProvider) Resources(_ context.Context) []func() resource.Resource {
 	return nil
 }
