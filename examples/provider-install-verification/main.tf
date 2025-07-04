@@ -9,3 +9,4 @@ terraform {
 provider "podman" {}
 
 data "podman_example" "example" {}
+
