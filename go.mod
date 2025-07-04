@@ -1,4 +1,4 @@
-module github.com/pixambi/podman-provider
+module terraform-provider-podman
 
 go 1.23.7
 

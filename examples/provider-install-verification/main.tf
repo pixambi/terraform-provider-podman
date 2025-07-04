@@ -6,7 +6,9 @@ terraform {
   }
 }
 
-provider "podman" {}
+provider "podman" {
+  connection = "podman-machine-default"
+}
 
 data "podman_example" "example" {}
 

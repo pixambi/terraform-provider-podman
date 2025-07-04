@@ -7,9 +7,9 @@ import (
 	"context"
 	"flag"
 	"log"
+	"terraform-provider-podman/internal/provider"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
-	"github.com/pixambi/podman-provider/internal/provider"
 )
 
 var (
